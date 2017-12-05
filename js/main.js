@@ -39,7 +39,7 @@ $("#back").click(function(){
     table.show();
 });
 
-
+var massPopChart;
 function charterino(){
     
     let myChart = document.getElementById('myChart').getContext('2d');
@@ -49,7 +49,11 @@ function charterino(){
         Chart.defaults.global.defaultFontSize = 18;
         Chart.defaults.global.defaultFontColor = '#FFF';
     
-        let massPopChart = new Chart(myChart, {
+        if (massPopChart) {
+          massPopChart.destroy();
+        }
+
+        massPopChart = new Chart(myChart, {
           type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
           data:{
             labels:['January', 'February', 'March', 'April', 'May', 'June'],
@@ -115,7 +119,7 @@ function charterino(){
             }
           }
         });
-    
+        massPopChart.update();
       };
 
 })();
